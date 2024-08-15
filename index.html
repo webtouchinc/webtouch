@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebTouch Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar */
+        header {
+            background-color: #000;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar-menu {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar-menu li {
+            margin-left: 20px;
+        }
+
+        .navbar-menu a {
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .navbar-menu a:hover {
+            background-color: #00bfa5;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('5.gif') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            font-weight: bold;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .hero button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background-color: #00bfa5;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .hero button:hover {
+            background-color: #008573;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #777;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .service-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            background-color: #fff;
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-item h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .service-item p {
+            font-size: 16px;
+            color: #777;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 80px 20px;
+            background-color: #f4f4f4;
+        }
+
+        .portfolio h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+        }
+
+        .portfolio-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay h3 {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .testimonial-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-item {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .testimonial-item p {
+            font-style: italic;
+        }
+
+        .testimonial-item h3 {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #00bfa5;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 20px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .contact-icons a {
+            color: #fff;
+            font-size: 40px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-icons a:hover {
+            color: #00bfa5;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="navbar">
+        <div class="navbar-logo">WebTouchPortfolio</div>
+        <ul class="navbar-menu">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Professional Web Development & Design</h1>
+        <p>Creating Stunning Websites for Businesses</p>
+        <button><a href="webdisplay.html">Get in Touch</button></a>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <h2>About Us</h2>
+    <p>We are a team of professional web designers and developers dedicated to building modern, responsive, and user-friendly websites for our clients. With years of experience, we ensure that your website stands out from the competition and delivers results.</p>
+</section>
+
+<section class="services" id="services">
+    <h2>Our Services</h2>
+    <div class="service-items">
+        <div class="service-item">
+            <h3>Web Design</h3>
+            <p>We create visually appealing and user-friendly website designs that engage visitors and convert them into customers.</p>
+        </div>
+        <div class="service-item">
+            <h3>SEO Optimization</h3>
+            <p>Our SEO services ensure that your website ranks high on search engines, bringing more traffic and potential clients.</p>
+        </div>
+        <div class="service-item">
+            <h3>E-commerce Solutions</h3>
+            <p>We develop secure and reliable e-commerce platforms to help you sell your products and services online.</p>
+        </div>
+    </div>
+</section>
+
+</section>
+
+<section class="portfolio" id="portfolio">
+    <h2>Our Portfolio</h2>
+    <div class="portfolio-items">
+        <div class="portfolio-item">
+            <img src="2.gif" alt="Project 1">
+            <div class="overlay">
+                <h3>Project Title</h3>
+            </div>
+        </div>
+        <div class="portfolio-item">
+            <img src="4.gif" alt="Project 2">
+            <div class="overlay">
+                <h3>Project Title</h3>
+            </div>
+        </div>
+        <div class="portfolio-item">
+            <img src="3.gif" alt="Project 3">
+            <div class="overlay">
+                <h3>Project Title</h3>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="testimonials" id="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial-items">
+        <div class="testimonial-item">
+            <p>"WebTouch transformed our website into a stunning platform that our clients love. Their design skills are top-notch."</p>
+            <h3>Larry T.</h3>
+        </div>
+        <div class="testimonial-item">
+            <p>"Thanks to WebTouch, our website is now ranking on the first page of Google, bringing in more traffic than ever."</p>
+            <h3>Giovan L.</h3>
+        </div>
+        <div class="testimonial-item">
+            <p>"The e-commerce solution provided by WebTouch has helped us grow our business online. Highly recommend their services!"</p>
+            <h3>Bryan D.</h3>
+        </div>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <h2>Connect with Us</h2>
+    <div class="contact-icons">
+        <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://webtouch.com" target="_blank"><i class="fas fa-globe"></i></a>
+        <a href="https://t.me/yourtelegram" target="_blank"><i class="fab fa-telegram"></i></a>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 WebTouch Portfolio. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
